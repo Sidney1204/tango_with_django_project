@@ -69,7 +69,8 @@ def add_page(request, category_name_slug):
 
 
 def about(request):
+    print(request.method)
+    print(request.user)
     #return HttpResponse("Rango says here is the about page.<a href='/rango/'>Index</a>")
-    context_dict = {'boldmessage': 'This tutorial has been put together by Xudong Xing'}
-    return render(request, 'rango/about.html', context=context_dict)
-
+    #context_dict = {'boldmessage': 'This tutorial has been put together by Xudong Xing'}
+    return render(request, 'rango/about.html', {})
