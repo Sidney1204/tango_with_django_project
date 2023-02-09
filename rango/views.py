@@ -112,25 +112,23 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
-
         username = request.POST.get('username')
         password = request.POST.get('password')
-
-        user = authenticate(username=username,password=password)
-
+        user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
-
-                login(request,user)
+                login(request, user)
                 return redirect(reverse('rango:index'))
             else:
                 return HttpResponse("Your Rango account is disabled.")
         else:
             print("Invalid login details:{username},{password}")
-            return HttpResponse("Invalid login details supplied.")
-
+            # return HttpResponse("Your username or password is wrong,pls try again.")
+            return render(request,'rango/restricted.html',{})
     else:
-        return render(request,'rango/login.html')
+        return render(request, 'rango/login.html', {})
+
+
 
 @login_required
 def restricted(request):
